@@ -2,8 +2,8 @@ Code for course CSC440.
 
 Course Page: http://www.cs.rochester.edu/courses/240/Fall2017.html
 
-
 Assignment-1:
+
 Playing with data
 
 Decide on your programming language
