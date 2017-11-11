@@ -13,4 +13,4 @@ Assignment-2:
 Code for execise 3.13 on text book.
 
 Project-1:
-Implement Aprior and FP-growth frequent pattern mining algorithm; and improve one of them. Dataset is the UCI Adult Census Dataset:http://archive.ics.uci.edu/ml/datasets/Adult
+Implement Apriori and FP-growth frequent pattern mining algorithm; and improve one of them. Dataset is the UCI Adult Census Dataset:http://archive.ics.uci.edu/ml/datasets/Adult
