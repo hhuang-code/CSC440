@@ -76,16 +76,6 @@ def clustering(pre_clusters, dataset):
 
     return pre_clusters
 
-# Check whether two clusters are the same
-def check_same(c1, c2):
-    if len(c1) == len(c2):
-        for center in c1:
-            if c1[center] != c2[center]:
-                return False
-        return True
-    else:
-        return False
-
 def main():
     dataset = readin()
     ini_center_idx = [0, 3, 6]
@@ -102,7 +92,8 @@ def main():
 
     pre_clusters = new_clusters
     new_clusters = clustering(pre_clusters, dataset)
-    while not check_same(pre_clusters, new_clusters):
+    #while not check_same(pre_clusters, new_clusters):
+    while pre_clusters != new_clusters:
         pre_clusters = new_clusters
         new_clusters = clustering(pre_clusters)
 
