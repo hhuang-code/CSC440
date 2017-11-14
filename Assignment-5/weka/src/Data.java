@@ -9,8 +9,8 @@ public class Data {
 
 	public static void Augment() throws Exception {
 		
-		String srcFilename = "/u/hhuang40/workspace/Weka/data/generalized_data.arff";
-		String destFilename = "/u/hhuang40/workspace/Weka/data/augmented_data.arff";
+		String srcFilename = "./generalized_data.arff";
+		String destFilename = "./augmented_data.arff";
 		
 		PrintWriter writer = new PrintWriter(destFilename);
 		// Print additional information needed by weka
