@@ -12,5 +12,9 @@ Interpret the statistics or plots.
 Assignment-2:
 Code for execise 3.13 on text book.
 
+Assignment-5:
+kmeans, kmedoids, kmeans++(Arthur, D.; Vassilvitskii, S. (2007). "k-means++: the advantages of careful seeding"). Weka for SVM, Naive Bayes and multi-layer neural network.
+
 Project-1:
 Implement Apriori and FP-growth frequent pattern mining algorithm; and improve one of them. Dataset is the UCI Adult Census Dataset:http://archive.ics.uci.edu/ml/datasets/Adult
+
