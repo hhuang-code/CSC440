@@ -1,0 +1,12 @@
+% department age salary status count
+sales 31...35 46K...50K senior 30
+sales 26...30 26K...30K junior 40
+sales 31...35 31K...35K junior 40
+systems 21...25 46K...50K junior 20
+systems 31...35 66K...70K senior 5
+systems 26...30 46K...50K junior 3
+systems 41...45 66K...70K senior 3
+marketing 36...40 46K...50K senior 10
+marketing 31...35 41K...45K junior 4
+secretary 46...50 36K...40K senior 4
+secretary 26...30 26K...30K junior 6
