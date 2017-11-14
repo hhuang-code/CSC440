@@ -10,7 +10,7 @@ public class ClassifierSVM{
 	public static void Run() throws Exception{
 		
 		//Load training dataset
-		DataSource source = new DataSource("/u/hhuang40/workspace/Weka/data/augmented_data.arff");
+		DataSource source = new DataSource("./augmented_data.arff");
 		
 		Instances trainSet = source.getDataSet();	
 				
@@ -24,7 +24,7 @@ public class ClassifierSVM{
 		System.out.println(smo);
 
 		//Load new dataset
-		DataSource source1 = new DataSource("/u/hhuang40/workspace/Weka/data/augmented_data.arff");
+		DataSource source1 = new DataSource("./augmented_data.arff");
 		Instances testSet = source1.getDataSet();	
 		//Set class index to the last attribute
 		testSet.setClassIndex(testSet.numAttributes() - 1);
