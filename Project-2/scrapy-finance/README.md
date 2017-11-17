@@ -1,22 +1,18 @@
 # scrapy-finance
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/hardikp/scrapy-finance/blob/master/LICENSE)
 
-scrapy spiders to crawl the financial data pertinent to train word vectors.
+## Credits
+https://github.com/hardikp/scrapy-finance
+
+scrapy spiders to crawl the financial data.
 
 ## List of sources
-* `bloomberg` - Bloomberg news articles
-* `investopedia` - Definitions of finance terms from investopedia.com
-* `wikipedia` - Finance pages from wikipedia - all wiki pages reachable from https://en.wikipedia.org/wiki/Outline_of_finance with at most 2 hops.
-* `qplum` - Investment articles from https://www.qplum.co/investing-library
+* 'bloomberg' - Bloomberg news articles
 
 ## How to use this
-```
-(py3) hardik@shire:~/scrapy-finance$ scrapy crawl bloomberg
-```
+> cd scrapy-finance
+> scrapy crawl bloomberg
 
 ## How to modify spiders for your use
-Please look at the specific spider files like `wikipedia.py`. They are relatively easy to follow and modify.
-```
 .
 ├── LICENSE
 ├── README.md
@@ -29,18 +25,4 @@ Please look at the specific spider files like `wikipedia.py`. They are relativel
     ├── settings.py
     └── spiders
         ├── bloomberg.py
-        ├── __init__.py
-        ├── investopedia.py
-        ├── qplum.py
-        └── wikipedia.py
-```
-
-## Notes
-* The text data is written in the lower case at the moment in all spiders.
-* This is not checked with python2.
-
-## Contributing
-Please feel free to submit a pull request to add relevant spiders.
-
-## LICENSE
-MIT
+        └── __init__.py
