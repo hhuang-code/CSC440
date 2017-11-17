@@ -2,14 +2,20 @@
 scrapy spiders to crawl the financial data.
 
 ## Credits
+```
 https://github.com/hardikp/scrapy-finance
+```
 
 ## List of sources
+```
 'bloomberg' - Bloomberg news articles
+```
 
 ## How to use this
+```
 > cd scrapy-finance
 > scrapy crawl bloomberg
+```
 
 ## How to modify spiders for your use
 ```
