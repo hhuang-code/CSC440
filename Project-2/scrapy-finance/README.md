@@ -12,6 +12,7 @@ https://github.com/hardikp/scrapy-finance
 > scrapy crawl bloomberg
 
 ## How to modify spiders for your use
+```
 .
 ├── LICENSE
 ├── README.md
@@ -25,3 +26,4 @@ https://github.com/hardikp/scrapy-finance
     └── spiders
         ├── bloomberg.py
         └── __init__.py
+```
