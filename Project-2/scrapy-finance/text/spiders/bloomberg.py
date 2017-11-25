@@ -63,7 +63,8 @@ class BloombergSpider(CrawlSpider):
         # Save the title and the text both
         filename = '{}/{}'.format(dirname, tokens[-1])
         f = open(filename, 'w')
-        f.write(text.encode('ascii', 'ignore'))
+        f.write(text.encode('ascii', 'ignore')) # python2
+        # f.write(text) # python3
         f.close()
 
         return self.parse_links(response)
