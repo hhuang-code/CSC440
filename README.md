@@ -1,4 +1,4 @@
-# Code for course CSC440.
+# Code for course CSC440
 
 ## Course Page
 ```
