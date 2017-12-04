@@ -33,5 +33,6 @@ https://github.com/hardikp/scrapy-finance
     ├── settings.py
     └── spiders
         ├── bloomberg.py
+        ├── reuters.py
         └── __init__.py
 ```

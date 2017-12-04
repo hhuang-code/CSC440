@@ -112,12 +112,12 @@ DOWNLOADER_MIDDLEWARES = {
 
 # Proxy list
 PROXIES = [
-    {'ip_port': '82.130.246.69:54214', 'user_pass': ''},
-    {'ip_port': '188.165.252.221:8080', 'user_pass': ''},
-    {'ip_port': '13.115.17.75:8080', 'user_pass': ''},
-    {'ip_port': '191.252.103.191:8080', 'user_pass': ''},
-    {'ip_port': '45.77.53.84:3128', 'user_pass': ''},
-    {'ip_port': '13.230.79.146:8080', 'user_pass': ''},
+    {'ip_port': '13.230.134.156:8080', 'user_pass': ''},
+    {'ip_port': '80.211.166.20:80', 'user_pass': ''},
+    {'ip_port': '213.44.87.247:8080', 'user_pass': ''},
     {'ip_port': '89.236.17.106:3128', 'user_pass': ''},
-    {'ip_port': '175.139.61.26:80', 'user_pass': ''},
+    {'ip_port': '13.115.180.145:8080', 'user_pass': ''},
+    {'ip_port': '125.27.217.105:3128', 'user_pass': ''},
+    {'ip_port': '192.99.71.38:8080', 'user_pass': ''},
+    {'ip_port': '177.89.149.121:53281', 'user_pass': ''},
 ]
