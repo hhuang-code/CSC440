@@ -1,4 +1,3 @@
-
 # -*- coding: utf-8 -*-
 
 # Define here the models for your spider middleware
@@ -8,40 +7,6 @@
 
 from scrapy import signals
 
-import random
-import base64
-
-from text.settings import PROXIES
-from text.settings import USER_AGENTS
-
-"""
-Randomly choose a user agent based on a list of predefined ones
-"""
-class RandomUserAgent(object):
-
-    def __init__(self, agents):
-        self.agents = agents
-
-    @classmethod
-    def from_crawler(cls, crawler):
-        return cls(crawler.settings.getlist('USER_AGENTS'))
-
-    def process_request(self, request, spider):
-        request.headers.setdefault('User-Agent', random.choice(self.agents))
-
-"""
-Randomly choose a proxy based on a list of predefined ones
-"""
-class ProxyMiddleware(object):
-    def process_request(self, request, spider):
-        proxy = random.choice(PROXIES)
-        if proxy['user_pass'] is not None:
-            request.meta['proxy'] = "http://%s" % proxy['ip_port']
-            #encoded_user_pass = base64.encodestring(proxy['user_pass'])
-            encoded_user_pass = proxy['user_pass']
-            request.headers['Proxy-Authorization'] = 'Basic ' + encoded_user_pass            
-        else:
-            request.meta['proxy'] = "http://%s" % proxy['ip_port']
 
 class TextSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,

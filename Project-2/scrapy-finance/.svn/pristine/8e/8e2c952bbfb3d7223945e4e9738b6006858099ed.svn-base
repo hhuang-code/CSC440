@@ -1,31 +1,36 @@
 import os
-import pdb
 
 import scrapy
 from scrapy.spiders import CrawlSpider
 from w3lib.html import remove_tags, remove_tags_with_content
 
+
 class BloombergSpider(CrawlSpider):
     name = 'bloomberg'
-    handle_httpstatus_list = [200, 301, 400, 404]
+    handle_httpstatus_list = [200, 404]
     allowed_domains = ['bloomberg.com']
-    start_urls = ['https://www.bloomberg.com']
+    start_urls = ['https://www.bloomberg.com/markets']
 
     def parse(self, response):
-        # Parse the response page
+        """
+        Parse the response page
+        """
         url = response.url
 
         if 'bloomberg.com' not in url:
             return
 
-        # Visit urls starting with bloomberg.com/news/articles and start from 2010
-        if 'bloomberg.com/news/articles/201' not in url:
+        # Visit urls starting with bloomberg.com/news/articles
+        if 'bloomberg.com/news/articles' not in url:
             return self.parse_links(response)
-        else:
-            return self._parse_response(response)
+
+        return self._parse_response(response)
 
     def _parse_response(self, response):
-        # Analyse response
+        """
+        Parses various topics
+        e.g. https://www.bloomberg.com/news/articles/2017-08-06/asian-stocks-to-gain-on-u-s-data-yen-holds-drop-markets-wrap
+        """
         if response.status == 404:
             print(response.headers)
 
@@ -50,23 +55,22 @@ class BloombergSpider(CrawlSpider):
             paragraph = paragraph.replace('&amp;', '&')
 
             text += paragraph + '\n\n'
+
         # Create the directory
         tokens = response.url.split('/')
         dirname = self.create_dir(tokens[-2])
 
         # Save the title and the text both
-        filename = '{}/{}'.format(dirname, tokens[-1] + '.txt')
-        if not os.path.exists(filename):
-            f = open(filename, 'w')
-            #f.write(text.encode('ascii', 'ignore'))
-            f.write(text)
-            f.close()
+        filename = '{}/{}'.format(dirname, tokens[-1])
+        f = open(filename, 'w')
+        f.write(text.encode('ascii', 'ignore'))
+        f.close()
 
         return self.parse_links(response)
 
     def create_dir(self, day):
         # Create the directory
-        dirname = '/home/aaron/Documents/Courses/440/dataset/news/raw/bloomberg'
+        dirname = 'data/bloomberg'
         if not os.path.exists(dirname):
             os.makedirs(dirname)
 
@@ -77,6 +81,7 @@ class BloombergSpider(CrawlSpider):
         return dirname
 
     def parse_links(self, response):
+
         links = response.css('a::attr(href)').extract()
         for link in links:
 
@@ -89,10 +94,9 @@ class BloombergSpider(CrawlSpider):
             tokens = link.split('/')
             if len(tokens) < 2:
                 continue
-            fname = '/home/aaron/Documents/Courses/440/dataset/news/raw/bloomberg/' + tokens[-2] + '/' + tokens[-1]
+            fname = 'data/bloomberg/' + tokens[-2] + '/' + tokens[-1]
             if os.path.exists(fname):
                 continue
 
             next_page = response.urljoin(link)
             yield scrapy.Request(next_page, callback=self.parse)
-
