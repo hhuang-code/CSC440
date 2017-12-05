@@ -10,7 +10,7 @@ class ReutersSpider(CrawlSpider):
     name = 'reuters'
     handle_httpstatus_list = [200, 301, 400, 404]
     allowed_domains = ['reuters.com']
-    start_urls = ['https://www.reuters.com']
+    start_urls = ['https://www.reuters.com/finance/markets']
 
     def parse(self, response):
         # Parse the response page
@@ -36,10 +36,12 @@ class ReutersSpider(CrawlSpider):
         # Replace / with a space - creates issues with writing to file
         title = title.replace('/', ' ')
 
+        text = title + '\n\n'
+
+        """
         # Get the first div with class content
         content = response.css('div.inner-container')[0]
 
-        text = title + '\n\n'
         for child in content.xpath('//p[not(@class)] | //li[not(@class)]'):
             # Get the text from this child <p></p> tag
             paragraph = child.extract()
@@ -51,6 +53,7 @@ class ReutersSpider(CrawlSpider):
             paragraph = paragraph.replace('&amp;', '&')
 
             text += paragraph + '\n\n'
+        """
 
         # get post date
         meta = response.xpath('//meta[@name="sailthru.date"]').extract_first()
@@ -74,6 +77,7 @@ class ReutersSpider(CrawlSpider):
     def get_date(self, string):
         # for articles starting from 2010
         date_pattern = re.compile('(201[0-9]{1}-[0-9]{2}-[0-9]{2})')
+        print('string: ' + string)
         date = date_pattern.search(string)
         if date is not None:
             return date.group(1)
