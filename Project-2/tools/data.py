@@ -2,9 +2,12 @@ import os
 import h5py
 import csv
 import numpy as np
+from pathlib import Path
 
 import torch
 from torch.utils.data import Dataset, DataLoader
+
+import pdb
 
 def create_dataset(news_word2vec_dir, stock_diff_dir, company, fea_label_dir):
     # stock price file
@@ -37,7 +40,7 @@ def create_dataset(news_word2vec_dir, stock_diff_dir, company, fea_label_dir):
                     continue    # no stock price for this day
                 else:
                     # open this word2vec .h5 file, add label, and save to another file
-                    dest_h5_dir = fea_label_dir + '/' + tokens[-1]
+                    dest_h5_dir = fea_label_dir + '/' + company + '/' + tokens[-1]  # token[-1] is date
                     if not os.path.exists(dest_h5_dir):
                         os.makedirs(dest_h5_dir)
                     
@@ -61,8 +64,10 @@ class FeatureData(Dataset):
         fea_label_dir: a directory containing news title feature and stock price label
     """
     def __init__(self, fea_label_dir):
-        self.fea_label_dir = fea_label_dir
-        self.fea_label_list = list(self.fea_label_iterdir())
+        self.fea_label_dir =Path(fea_label_dir)
+        # find all subfolders and files
+        subdir_and_file = self.fea_label_dir.glob('**/*')
+        self.fea_label_list = [x for x in subdir_and_file if x.is_file()]
 
     # return num of features (equal to num of titles)
     def __len__(self):

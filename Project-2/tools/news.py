@@ -10,6 +10,8 @@ from nltk.corpus import wordnet
 from nltk.stem.wordnet import WordNetLemmatizer
 from nltk.corpus import verbnet
 
+import pdb
+
 # get news titles from raw news files
 def get_news_title(news_raw_dir, news_title_dir):
     for dirpath, dirname, filenames in os.walk(news_raw_dir):
@@ -122,6 +124,7 @@ def word_to_vector(news_tag_dir, news_word2vec_dir, word2vec_model_path):
                         tag, word = line.strip().split(' ')
                         try:
                             vector = model.word_vec(word)
+                            vector = np.array(vector).flatten()
                             if feature.size == 0:
                                 feature = np.hstack((feature, vector))
                             else:

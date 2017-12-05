@@ -50,6 +50,15 @@ def get_config(**kwargs):
     # final dataset for training, validation and testing
     parser.add_argument('--fea_label_dir', type = str, default = '/tmp/440/dataset/fea_label')
 
+    # model
+    parser.add_argument('--input_size', type = int, default = 300)
+    parser.add_argument('--hidden_size', type = int, default = 300)
+
+    # train
+    parser.add_argument('--n_epochs', type = int, default = 100)
+    parser.add_argument('--batch_size', type = int, default = 1)
+    parser.add_argument('--learning_rate', type = float, default = 1e-4)
+
     args = parser.parse_args()
 
     # namespace -> dictionary
