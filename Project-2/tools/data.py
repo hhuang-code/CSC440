@@ -3,6 +3,9 @@ import h5py
 import csv
 import numpy as np
 
+import torch
+from torch.utils.data import Dataset, DataLoader
+
 def create_dataset(news_word2vec_dir, stock_diff_dir, company, fea_label_dir):
     # stock price file
     stock_diff_filename = os.path.join(stock_diff_dir, company + '.csv')
@@ -49,4 +52,36 @@ def create_dataset(news_word2vec_dir, stock_diff_dir, company, fea_label_dir):
                     dh5.create_dataset('label', data = np.array([stock_diff]))
                     dh5.close()
                     
+"""
+transform dataset to a pytorch dataset
+"""
+class FeatureData(Dataset):
+    """
+    Args:
+        fea_label_dir: a directory containing news title feature and stock price label
+    """
+    def __init__(self, fea_label_dir):
+        self.fea_label_dir = fea_label_dir
+        self.fea_label_list = list(self.fea_label_iterdir())
 
+    # return num of features (equal to num of titles)
+    def __len__(self):
+        return len(self.fea_label_list)
+
+    def __getitem__(self, index):
+        fea_label_file = self.fea_label_list[index]
+        with h5py.File(fea_label_file, 'r') as f:   # for each title
+            feature = torch.Tensor(np.array(f['feature']))
+            label = torch.Tensor(np.array(f['label']))
+        f.close()
+
+        return feature, label
+
+# generate feature loader according to the given feature directory
+def feature_loader(fea_label_dir, batch_size, mode = 'train'):
+    if mode.lower() == 'train':
+        return DataLoader(FeatureData(fea_label_dir), batch_size = batch_size)
+    elif mode.lower() == 'test':
+        return DataLoader(FeatureData(fea_label_dir), batch_size = batch_size)
+    else:
+        raise 'No such mode!'
