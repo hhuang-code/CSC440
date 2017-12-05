@@ -47,6 +47,9 @@ def get_config(**kwargs):
     # change of stock price
     parser.add_argument('--stock_diff_dir', type = str, default = '/tmp/440/dataset/stock/diff')
 
+    # final dataset for training, validation and testing
+    parser.add_argument('--fea_label_dir', type = str, default = '/tmp/440/dataset/fea_label')
+
     args = parser.parse_args()
 
     # namespace -> dictionary

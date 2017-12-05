@@ -79,7 +79,8 @@ def get_tags(news_title_dir, news_tag_dir):
             dest_filename = os.path.join(dest_dirpath, filename)
             
             # tag words
-            target_tag_list = ['NN', 'NNS', 'NNP', 'NNPS', 'VB', 'VBD', 'VBG', 'VB                  N', 'VBP', 'VBZ', 'RB', 'RBR', 'RBS', 'JJ', 'JJR', 'JJS']
+            target_tag_list = ['NN', 'NNS', 'NNP', 'NNPS', 'VB', 'VBD', 'VBG', 
+                'VBN', 'VBP', 'VBZ', 'RB', 'RBR', 'RBS', 'JJ', 'JJR', 'JJS']
             if not os.path.exists(dest_filename):
                 with open(dest_filename, 'w') as f:
                     word_tokens = word_tokenize(title.lower())
