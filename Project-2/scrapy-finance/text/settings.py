@@ -38,7 +38,7 @@ USER_AGENTS = [
 ROBOTSTXT_OBEY = True
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-CONCURRENT_REQUESTS = 12
+CONCURRENT_REQUESTS = 16
 
 # Configure a delay for requests for the same website (default: 0)
 # See http://scrapy.readthedocs.org/en/latest/topics/settings.html#download-delay
@@ -112,12 +112,16 @@ DOWNLOADER_MIDDLEWARES = {
 
 # Proxy list
 PROXIES = [
-    {'ip_port': '13.230.134.156:8080', 'user_pass': ''},
-    {'ip_port': '80.211.166.20:80', 'user_pass': ''},
-    {'ip_port': '213.44.87.247:8080', 'user_pass': ''},
-    {'ip_port': '89.236.17.106:3128', 'user_pass': ''},
-    {'ip_port': '13.115.180.145:8080', 'user_pass': ''},
-    {'ip_port': '125.27.217.105:3128', 'user_pass': ''},
-    {'ip_port': '192.99.71.38:8080', 'user_pass': ''},
-    {'ip_port': '177.89.149.121:53281', 'user_pass': ''},
+    {'ip_port': '150.95.157.153:3128', 'user_pass': ''},
+    {'ip_port': '122.183.243.66:8080', 'user_pass': ''},
+    {'ip_port': '137.74.168.174:8080', 'user_pass': ''},
+    {'ip_port': '165.227.224.142:80', 'user_pass': ''},
+    {'ip_port': '178.238.231.234:3128', 'user_pass': ''},
+    {'ip_port': '110.77.208.127:54214', 'user_pass': ''},
+    {'ip_port': '87.98.157.128:3128', 'user_pass': ''},
+    {'ip_port': '138.0.155.195:8080', 'user_pass': ''},
 ]
+
+# File stored path
+BLOOMBERG_PATH = '/home/aaron/Documents/Courses/440/dataset/news/raw/bloomberg'
+REUTERS_PATH = '/home/aaron/Documents/Courses/440/dataset/news/raw/reuters'

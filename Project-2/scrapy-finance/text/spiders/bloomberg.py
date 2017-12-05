@@ -5,9 +5,11 @@ import scrapy
 from scrapy.spiders import CrawlSpider
 from w3lib.html import remove_tags, remove_tags_with_content
 
+from text.settings import BLOOMBERG_PATH
+
 class BloombergSpider(CrawlSpider):
     name = 'bloomberg'
-    handle_httpstatus_list = [200, 301, 400, 404]
+    handle_httpstatus_list = [200, 404]
     allowed_domains = ['bloomberg.com']
     start_urls = ['https://www.bloomberg.com']
 
@@ -27,7 +29,7 @@ class BloombergSpider(CrawlSpider):
     def _parse_response(self, response):
         # Analyse response
         if response.status == 404:
-            print(response.headers)
+            return self.parse_links(response)
 
         # Get the title first
         title = response.css('title::text').extract_first()
@@ -66,7 +68,7 @@ class BloombergSpider(CrawlSpider):
 
     def create_dir(self, day):
         # Create the directory
-        dirname = '/home/aaron/Documents/Courses/440/dataset/news/raw/bloomberg'
+        dirname = BLOOMBERG_PATH
         if not os.path.exists(dirname):
             os.makedirs(dirname)
 
@@ -89,10 +91,11 @@ class BloombergSpider(CrawlSpider):
             tokens = link.split('/')
             if len(tokens) < 2:
                 continue
-            fname = '/home/aaron/Documents/Courses/440/dataset/news/raw/bloomberg/' + tokens[-2] + '/' + tokens[-1] + '.txt'
-            if os.path.exists(fname):
+            filename = BLOOMBERG_PATH + tokens[-2] + '/' + tokens[-1] + '.txt'
+            if os.path.exists(filename):
                 continue
 
-            next_page = response.urljoin(link)
-            yield scrapy.Request(next_page, callback=self.parse)
+            if link is not None:            
+                next_page = response.urljoin(link)
+                yield scrapy.Request(next_page, callback=self.parse)
 
