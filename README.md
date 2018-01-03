@@ -27,3 +27,8 @@ kmeans, kmedoids, kmeans++(Arthur, D.; Vassilvitskii, S. (2007). "k-means++: the
 ```
 Implement Apriori and FP-growth frequent pattern mining algorithm; and improve one of them. Dataset is the UCI Adult Census Dataset:http://archive.ics.uci.edu/ml/datasets/Adult
 ```
+
+## Project-2
+```
+Predict stock price using financial news.
+```
